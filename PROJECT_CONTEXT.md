@@ -143,3 +143,34 @@ autonomous-driving-research/
 ├── results/
 ├── PROJECT_CONTEXT.md
 └── README.md
+
+## 7. Current Project Status
+
+### Day 1 — Development Foundation
+Status: Complete
+
+### Day 2 — Classical Lane Detection
+Status: Complete
+
+Implemented:
+- Image loading and preprocessing
+- Grayscale conversion
+- Gaussian blur
+- Canny edge detection
+- Region of interest
+- Bright-pixel lane-marking filtering
+- Hough line detection
+- Left/right lane candidate separation
+- Geometric filtering
+- Robust lane-boundary estimation
+- Lane-centre estimation
+- Normalized lateral error
+- Validation on three road images
+- Diagnostic visualization of lane candidates
+
+Current limitation:
+The classical detector works on the initial road image but does not reliably detect both lane boundaries on all validation images. This limitation is recorded for future improvement rather than being hidden.
+
+### Current Stage
+Day 2 complete.
+Next: Day 3.
