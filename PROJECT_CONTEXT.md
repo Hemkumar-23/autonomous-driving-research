@@ -20,11 +20,18 @@ and integrate them into a coherent autonomous system.
 
 ## 2. Project Period
 
-Start: 27 August 2026
+Start: March 2026
 
-End: 30 September 2026
+End: July 2026
 
-Available time: approximately 2 hours per day.
+## Repository Timeline
+
+The project work was carried out during the March–July 2026 project
+period. The GitHub repository was subsequently consolidated and
+structured to provide a reproducible and organized presentation of
+the project work. Therefore, Git commit dates may reflect the
+repository consolidation and documentation process rather than the
+original project activity dates.
 
 ---
 

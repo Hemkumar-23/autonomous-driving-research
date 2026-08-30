@@ -4,6 +4,15 @@ This document records the concepts, implementations, experiments,
 tests, problems, and lessons learned throughout the autonomous-driving
 research project.
 
+## Project Period
+
+March 2026 – July 2026
+
+The learning log records the technical work, experiments,
+implementation decisions, validation activities, and lessons learned
+during the project. The repository was consolidated afterward for
+structured version control and presentation.
+
 ---
 
 ## Day 1 — Development Foundation
