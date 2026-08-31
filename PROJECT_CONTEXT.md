@@ -625,7 +625,7 @@ Day 2 complete.
 
 Next: Day 3.
 
-### Day 3 — Learning-Based Perception Introductions
+### Day 3 — Learning Based Perception Introduction
 
 Status: Complete
 
@@ -654,12 +654,51 @@ The basic CNN forward and learning mechanisms are understood,
 including the relationship between architecture parameters,
 predictions, loss, gradients, and optimizer-based parameter updates.
 
-The CNN has not been trained on a dataset during Day 3. Dataset
-preparation, CNN training, and classification evaluation remain part
-of the planned CNN image-classification stage.
+The CNN was not trained on a dataset during Day 3. Dataset preparation,
+CNN training, and classification evaluation were completed as part of
+the following CNN image-classification stage.
 
-### Current Stage D3
+### Day 4 — CNN-Image Classification
 
-Day 3 complete.
+Status: Complete
 
-Next: Day 4.
+Implemented and studied:
+
+- MNIST image-classification dataset preparation
+- Training and validation dataset split
+- DataLoader and batch processing
+- Image and label representation
+- Simple CNN classifier
+- Forward pass on real image data
+- Cross-entropy classification loss
+- Adam optimizer
+- Backpropagation and parameter updates
+- One-epoch CNN training
+- Validation evaluation
+- Independent test-set evaluation
+
+Implementation:
+
+`deep_learning/cnn_from_scratch/02_image_classification.ipynb`
+
+Results after one training epoch:
+
+- Training accuracy: 89.48%
+- Validation accuracy: 95.62%
+- Test accuracy: 96.30%
+- Test correct predictions: 9,630 / 10,000
+
+Current learning result:
+
+A complete supervised image-classification workflow was implemented
+and understood, from labelled image data through CNN training and
+independent test evaluation.
+
+The experiment is a controlled MNIST classification exercise and does
+not represent autonomous-driving performance.
+
+### Current Stage D4
+
+Day 4 complete.
+
+Next: Day 5.

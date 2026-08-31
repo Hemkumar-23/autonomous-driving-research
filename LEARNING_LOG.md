@@ -367,3 +367,175 @@ backpropagation, and parameter-update mechanisms were studied.
 
 Actual CNN training is deferred to the planned image-classification
 stage.
+
+## Day 4 — CNN Image Classification
+
+### Objective
+
+Study and implement the basic image-classification workflow using a
+small labelled image dataset and a convolutional neural network.
+
+### Dataset Preparation
+
+The MNIST handwritten-digit dataset was used for the classification
+experiment.
+
+The dataset contains:
+
+- 60,000 training images
+- 10,000 test images
+- Grayscale images with a size of 28 × 28 pixels
+- 10 classes representing digits 0–9
+
+The original 60,000-image training dataset was divided into:
+
+- 54,000 training images
+- 6,000 validation images
+
+The separate 10,000-image test dataset was kept untouched for final
+evaluation.
+
+A fixed random seed was used for the training/validation split to make
+the experiment reproducible.
+
+### Data Representation
+
+A single MNIST image was represented as:
+
+[1, 28, 28]
+
+where:
+
+- 1 = grayscale image channel
+- 28 = image height
+- 28 = image width
+
+A batch size of 64 was used.
+
+Therefore, a training or validation batch was represented as:
+
+[64, 1, 28, 28]
+
+The corresponding label tensor contained 64 class labels.
+
+The images and labels were kept as separate data structures. The labels
+were not embedded into or removed from the image data.
+
+### CNN Architecture
+
+A simple CNN classifier was implemented using PyTorch.
+
+The architecture consisted of:
+
+- First convolution: 1 input channel → 8 output channels
+- ReLU activation
+- Max pooling
+- Second convolution: 8 input channels → 16 output channels
+- ReLU activation
+- Max pooling
+- Flattening
+- Fully connected layer: 784 inputs → 10 outputs
+
+The spatial dimensions changed as follows:
+
+28 × 28
+→ 14 × 14
+→ 7 × 7
+
+The flattened feature size was therefore:
+
+16 × 7 × 7 = 784
+
+The 8 and 16 convolutional output channels were selected as model
+architecture parameters. They were design choices rather than values
+calculated from the dataset.
+
+The final 10 outputs corresponded to the ten MNIST classes.
+
+### Training
+
+Cross-entropy loss was used for classification.
+
+The Adam optimizer was used with a learning rate of 0.001.
+
+The basic training sequence was studied and implemented:
+
+Forward pass
+→ loss calculation
+→ backpropagation
+→ gradient calculation
+→ optimizer update
+
+One individual training step was first performed to observe the effect
+of a parameter update.
+
+The loss changed from approximately 2.3019 before the update to
+approximately 2.2846 after the update on the same batch.
+
+The model was then trained for one complete epoch over the 54,000-image
+training subset.
+
+### Validation
+
+The model was evaluated on the separate 6,000-image validation subset.
+
+During validation:
+
+- The model was switched to evaluation mode.
+- Gradient calculation was disabled.
+- The model parameters were not updated.
+
+Validation therefore measured the model's performance on images that
+were not used to update the model weights.
+
+### Test Evaluation
+
+The trained model was finally evaluated on the separate 10,000-image
+MNIST test dataset.
+
+Results after one training epoch:
+
+- Training accuracy: 89.48%
+- Validation accuracy: 95.62%
+- Test accuracy: 96.30%
+- Test correct predictions: 9,630 / 10,000
+
+The test accuracy represents the basic classification performance of
+this controlled MNIST experiment. It does not represent autonomous
+driving performance.
+
+### Problems and Debugging
+
+During dataset splitting, the labels returned by the MNIST dataset
+were Python integers in the inspected samples. Calling `.item()` on
+these labels caused an AttributeError.
+
+The issue was resolved by printing the labels directly instead of
+calling `.item()`.
+
+### Main Learning Outcomes
+
+The complete CNN image-classification workflow was understood and
+implemented:
+
+Dataset
+→ training/validation split
+→ DataLoader
+→ batches
+→ CNN
+→ forward pass
+→ loss
+→ backpropagation
+→ optimizer update
+→ validation
+→ test evaluation
+
+The difference between training, validation, and test data was also
+understood.
+
+Training data is used to update model parameters. Validation data is
+used to evaluate the model during development without updating the
+parameters. The test dataset is kept separate for final evaluation.
+
+The experiment provides the foundation for the next stage of CNN
+evaluation and improvement.
