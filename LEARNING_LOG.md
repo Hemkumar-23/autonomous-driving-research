@@ -655,7 +655,7 @@ The results should therefore be interpreted specifically for the
 augmentation configuration tested rather than as a general conclusion
 that data augmentation always improves CNN performance.
 
-### Day 5 Status
+### Day-5 Status
 
 CNN evaluation and basic improvement experiment completed.
 

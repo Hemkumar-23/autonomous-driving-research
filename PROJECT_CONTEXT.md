@@ -746,7 +746,7 @@ accuracy. The experiment also reinforced the importance of controlled
 model comparison using the same starting state and unchanged
 validation and test datasets.
 
-### Current Stage D5
+### Current Stage - D5
 
 Day 5 complete.
 
