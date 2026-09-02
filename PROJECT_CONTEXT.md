@@ -751,3 +751,38 @@ validation and test datasets.
 Day 5 complete.
 
 Next: Day 6.
+
+### Day 6 — Learning-Based Lane Perception
+
+Status: Complete
+
+Implemented and studied:
+
+- Learning-based lane-perception problem formulation
+- Difference between classification and geometric lane prediction
+- Minimal four-coordinate lane representation
+- Lane-centre calculation from predicted lane boundaries
+- Relationship between lane perception and lateral-error estimation
+- Dataset and ground-truth annotation requirements
+
+Implementation:
+
+`perception/lane_detection/02_learning_based_lane_perception.ipynb`
+
+Key observation:
+
+The current lane-perception dataset contains three road images but no
+lane-coordinate annotation files. Therefore, the available images are
+not sufficient for supervised lane-coordinate regression without an
+additional annotation step or an appropriately labelled dataset.
+
+Current learning result:
+
+The learning-based lane-perception problem was defined without
+introducing unsupported training labels.
+
+### Current Stage D6
+
+Day 6 complete.
+
+Next: Day 7 — Lane-Perception Experiment.

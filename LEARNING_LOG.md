@@ -667,3 +667,88 @@ configuration, but substantial class-level improvements were observed
 for digits 8 and 9.
 
 ----------------------------------------------------------------------------------------------
+
+## Day 6 — Learning-Based Lane Perception
+
+### Objective D6
+
+Introduce learning-based lane perception and understand how it differs
+from image classification. Define a minimal lane-coordinate
+representation and identify the data requirements for supervised
+learning.
+
+### Concepts Learned D6
+
+Learning-based lane perception differs from image classification
+because the model output describes road geometry rather than selecting
+a discrete class.
+
+For the minimal formulation considered in this stage, the model input
+is a road image and the output is represented by four continuous
+values:
+
+`[x_left_top, x_left_bottom, x_right_top, x_right_bottom]`
+
+These values describe the left and right lane boundaries at two fixed
+vertical positions in the image.
+
+The lane centre at the selected bottom evaluation position can be
+calculated as:
+
+`x_lane_centre = (x_left_bottom + x_right_bottom) / 2`
+
+The difference between the lane centre and the image centre can then be
+used to determine lateral displacement and subsequently a normalized
+lateral error.
+
+This connects the learning-based representation with the lane-centre
+and lateral-error calculation used in the classical lane-detection
+baseline.
+
+### Dataset and Target Requirements
+
+The current lane-perception dataset contains three road images:
+
+- `road_01.jpg`
+- `road_02.jpg`
+- `road_03.jpg`
+
+No corresponding lane-coordinate annotation files are currently
+available.
+
+Therefore, these images are sufficient for visual inspection but are
+not sufficient by themselves for supervised training and quantitative
+evaluation of a lane-coordinate regression model.
+
+A supervised learning experiment requires the relationship:
+
+`road image → ground-truth lane coordinates`
+
+The required annotations must therefore be obtained before a
+supervised lane-coordinate regression model can be trained and
+evaluated.
+
+### Problems and Lessons Learned D6
+
+A key limitation identified during Day 6 was the absence of lane
+annotations in the current dataset.
+
+The experiment was therefore not extended into unsupported supervised
+training. Instead, the input-output representation and annotation
+requirements were defined explicitly before implementation.
+
+This reinforced the importance of verifying the available dataset and
+ground-truth representation before selecting and training a learning
+model.
+
+### Day 6 Status
+
+Learning-based lane perception introduced and the required
+input-output representation established.
+
+The difference between classification and geometric lane prediction
+was understood, and the available dataset was inspected.
+
+No unsupported training labels were introduced.
+
+Next: Day 7 — Lane-Perception Experiment.
