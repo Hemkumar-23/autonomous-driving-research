@@ -752,7 +752,7 @@ Day 5 complete.
 
 Next: Day 6.
 
-### Day 6 — Learning-Based Lane Perception
+### Day 6 — Learning-Based-Lane Perception
 
 Status: Complete
 
@@ -786,3 +786,33 @@ introducing unsupported training labels.
 Day 6 complete.
 
 Next: Day 7 — Lane-Perception Experiment.
+
+### Day 7 — Learning-Based Lane Perception Experiment — COMPLETE
+
+Implemented a minimal CNN-based lane-perception experiment in:
+
+`perception/lane_detection/02_learning_based_lane_perception.ipynb`
+
+The experiment formulated lane perception as a regression problem in which a CNN predicts four normalized lane-boundary coordinates from a road image.
+
+Because the available dataset contained only three road images without independent lane-coordinate annotations, the three images were manually annotated specifically for this experiment. The CNN was trained and evaluated on these same three samples.
+
+Results:
+
+- Final training-set MSE: `0.000024`
+- Overall mean absolute coordinate error: `12.86 px`
+- Maximum individual coordinate error: `40.12 px`
+
+The predicted lane boundaries were visually compared with the manually annotated reference boundaries and showed generally close agreement on the three samples.
+
+The learning-based approach was also compared qualitatively with the existing classical OpenCV lane-detection baseline. No direct numerical performance ranking was made because both approaches were not evaluated against the same quantitative ground-truth metric.
+
+The experiment is considered a **proof-of-concept rather than a validated lane-perception system**. Generalization and robustness were not established because of the very limited dataset, training-set evaluation, manual annotations, aspect-ratio-changing image resize, and lack of evaluation under varied environmental conditions.
+
+**Next focus:** Continue with the planned perception-stack development, including object detection/tracking and subsequent integration of perception outputs into the broader autonomous-driving pipeline.
+
+### Current Stage D7
+
+Day 7 complete.
+
+Next: Day 8 — Object Detection and Tracking.

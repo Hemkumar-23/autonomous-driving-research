@@ -752,3 +752,74 @@ was understood, and the available dataset was inspected.
 No unsupported training labels were introduced.
 
 Next: Day 7 — Lane-Perception Experiment.
+
+## Day 7 — Learning-Based Lane Perception Experiment
+
+### Objective
+
+Implement and evaluate a minimal learning-based lane-perception approach using a CNN to regress four lane-boundary coordinates from road images, compare the approach qualitatively with the classical lane-detection baseline, and document the experimental limitations.
+
+### Implementation
+
+A separate notebook, `perception/lane_detection/02_learning_based_lane_perception.ipynb`, was used for the experiment.
+
+Because the available lane-perception dataset contained only three road images and no independent lane-coordinate annotations, the three images were manually annotated for this experiment. The four target values represent:
+
+- left lane x-coordinate at the top of the image
+- left lane x-coordinate at the bottom of the image
+- right lane x-coordinate at the top of the image
+- right lane x-coordinate at the bottom of the image
+
+The coordinates were normalized by the original image width and used as regression targets.
+
+A small CNN was implemented in PyTorch using convolutional layers, ReLU activations, max pooling, adaptive average pooling, and a fully connected regression layer producing four outputs. Mean squared error was used as the loss function and Adam as the optimizer.
+
+### Results
+
+The model was trained on all three manually annotated samples.
+
+Final training-set MSE:
+
+- `0.000024`
+
+Overall mean absolute coordinate error after converting predictions back to the original image coordinate system:
+
+- `12.86 px`
+
+Maximum individual coordinate error:
+
+- `40.12 px`
+
+The predicted lane boundaries were also visually compared with the manually annotated reference boundaries. The predictions were generally close to the reference lines for all three samples.
+
+### Comparison with Classical Lane Detection
+
+The learning-based approach and the classical lane-detection baseline were compared qualitatively.
+
+The classical approach uses explicitly defined image-processing and geometric operations, including Canny edge detection, region-of-interest processing, brightness filtering, and the Hough transform. During the earlier baseline evaluation, `road_01.jpg` produced both lane boundaries, while reliable boundary estimation was limited for `road_02.jpg` and `road_03.jpg`.
+
+The learning-based approach instead learns an image-to-lane-coordinate mapping using the CNN. In this experiment, the CNN successfully fitted the manually annotated lane coordinates for all three samples.
+
+A direct numerical accuracy comparison was not performed because both approaches were not evaluated against the same quantitative ground-truth metric.
+
+### Limitations
+
+The experiment is a proof-of-concept rather than a validated lane-perception system.
+
+The main limitations are:
+
+- only three road images were available;
+- the same three images were used for both training and evaluation;
+- therefore, the reported errors do not measure generalization to unseen images;
+- the lane coordinates were manually created specifically for this experiment;
+- direct resizing to `224 × 224` changes the original image aspect ratio;
+- no common quantitative ground truth was available for comparing the classical and learning-based approaches;
+- robustness to different road geometries, lighting conditions, camera viewpoints, occlusions, and other environmental variations was not evaluated.
+
+### Key Learning
+
+Day 7 demonstrated the feasibility of formulating lane perception as a regression problem in which a CNN maps a road image directly to lane-boundary coordinates. The experiment also highlighted the importance of dataset size, independent evaluation data, ground-truth quality, and robustness testing when assessing learning-based perception systems.
+
+### Status
+
+**Day 7 complete.**
