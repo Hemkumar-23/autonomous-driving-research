@@ -4,3 +4,5 @@ __pycache__/
 .ipynb_checkpoints/
 requirements-full.txt
 datasets/MNIST/
+LEARNING_LOG.md
+PROJECT_CONTEXT.md
