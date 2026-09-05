@@ -13,7 +13,7 @@ implementation decisions, validation activities, and lessons learned
 during the project. The repository was consolidated afterward for
 structured version control and presentation.
 
----
+----------------------------------------------------------------------------------------------
 
 ## Day 1 — Development Foundation
 
@@ -57,24 +57,22 @@ The GitHub repository is configured as the remote named `origin`.
 
 ## Commands Used
 
-```text
+``text
 git --versionS
 git clone
 git status
 git ls-remote
 git config
-
-
----------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 
 ## Day 2 — Classical Lane Detection
 
-## Objective
+## Objective D2
 
 Build and understand a basic classical computer-vision lane-detection
 pipeline using recorded road images.
 
-## Concepts Learned
+## Concepts Learned D2
 
 ### Image Pre-processing
 
@@ -139,6 +137,7 @@ A reusable `run_lane_detection()` function was created to run the
 complete lane-detection pipeline on an input image.
 
 The pipeline was then applied to three validation images:
+
 - road_01.jpg
 - road_02.jpg
 - road_03.jpg
@@ -196,17 +195,17 @@ Classical lane-detection baseline implemented and tested.
 The basic perception pipeline is working, with known limitations
 identified for further development.
 
----
+----------------------------------------------------------------------------------------------
 
 ## Day 3 — Learning-Based Perception Introduction
 
-## Objective
+## Objective D3
 
 Understand the basic structure and operation of a convolutional
 neural network and establish the foundation for later learning-based
 perception experiments.
 
-## Concepts Learned
+## Concepts Learned D3
 
 ### PyTorch
 
@@ -308,7 +307,7 @@ The simplified update relationship is:
 This demonstrated the basic mechanism through which a neural network
 can learn during training.
 
-## Implementation
+## Implementation D3
 
 A minimal CNN was implemented in:
 
@@ -338,7 +337,7 @@ The CNN was not trained as part of Day 3. Actual dataset preparation,
 CNN training, and classification evaluation are reserved for the
 subsequent CNN image-classification stage.
 
-## Problems and Lessons Learned
+## Problems and Lessons Learned D3
 
 The main learning focus was understanding what the numerical
 parameters in a CNN represent rather than treating the network as a
@@ -368,9 +367,11 @@ backpropagation, and parameter-update mechanisms were studied.
 Actual CNN training is deferred to the planned image-classification
 stage.
 
+----------------------------------------------------------------------------------------------
+
 ## Day 4 — CNN Image Classification
 
-### Objective
+### Objective D4
 
 Study and implement the basic image-classification workflow using a
 small labelled image dataset and a convolutional neural network.
@@ -421,7 +422,7 @@ The corresponding label tensor contained 64 class labels.
 The images and labels were kept as separate data structures. The labels
 were not embedded into or removed from the image data.
 
-### CNN Architecture
+### CNN Architecture D4
 
 A simple CNN classifier was implemented using PyTorch.
 
@@ -475,7 +476,7 @@ approximately 2.2846 after the update on the same batch.
 The model was then trained for one complete epoch over the 54,000-image
 training subset.
 
-### Validation
+### Validation D4
 
 The model was evaluated on the separate 6,000-image validation subset.
 
@@ -539,3 +540,130 @@ parameters. The test dataset is kept separate for final evaluation.
 
 The experiment provides the foundation for the next stage of CNN
 evaluation and improvement.
+
+----------------------------------------------------------------------------------------------
+
+## Day 5 — CNN Evaluation and Improvement
+
+### Objective D5
+
+Analyse CNN classification errors, introduce basic data augmentation,
+and compare the resulting model performance with the established
+non-augmented baseline.
+
+### Classification Error Analysis
+
+The trained CNN was evaluated on the 10,000-image MNIST test set.
+
+The model produced:
+
+- 9,643 correct predictions
+- 357 incorrect predictions
+- 96.43% test accuracy
+
+The most common classification errors included confusion between
+digits 9 and 4, digits 7 and 2, and digits 8 and 2 or 4.
+
+Per-class evaluation showed that digits 8 and 9 were among the more
+difficult classes for the baseline model, with accuracies of 91.99%
+and 91.28%, respectively.
+
+### Extended Baseline Training
+
+The baseline CNN was trained for five additional epochs without data
+augmentation.
+
+The resulting test accuracy was:
+
+- 98.58%
+- 9,858 correct predictions out of 10,000
+
+Training and validation curves were also inspected. Training accuracy
+increased throughout the additional epochs, while validation accuracy
+also improved and remained close to the training performance.
+
+### Data Augmentation
+
+Basic data augmentation was introduced for the training subset.
+
+The augmentation pipeline consisted of:
+
+- Random rotation of up to ±10 degrees
+- Random translation of up to 10% in horizontal and vertical directions
+- Random scaling between 90% and 110%
+
+The augmentation was applied only to the 54,000-image training subset.
+The 6,000-image validation subset and the 10,000-image test set were
+kept unchanged.
+
+The augmented training data were generated on the fly when samples
+were retrieved from the dataset.
+
+Visual inspection confirmed that the transformed images retained their
+original class labels while exhibiting small changes in orientation,
+position, and scale.
+
+### Augmentation Experiment
+
+The augmented model was initialized from the preserved baseline model
+state to provide a controlled comparison.
+
+The augmented model was trained for five epochs using the same CNN
+architecture, optimizer configuration, batch size, and validation
+dataset as the baseline experiment.
+
+The final test results were:
+
+- Baseline without augmentation: 98.58%
+- With augmentation: 98.44%
+- Overall difference: -0.14 percentage points
+
+Therefore, the applied augmentation configuration did not improve
+overall test accuracy in this experiment.
+
+### Per-Class Observation
+
+Although the overall test accuracy was slightly lower, the
+per-class results showed substantial changes.
+
+The largest improvements were observed for previously difficult
+classes:
+
+- Digit 8: 91.99% → 97.84% (+5.85 percentage points)
+- Digit 9: 91.28% → 97.03% (+5.75 percentage points)
+- Digit 7: 95.53% → 97.96% (+2.43 percentage points)
+- Digit 5: 96.52% → 99.33% (+2.80 percentage points)
+
+Digit 4 decreased from 98.47% to 97.15%.
+
+These results show that augmentation changed the distribution of
+classification performance across classes even though the overall
+test accuracy remained approximately unchanged.
+
+### Problems and Lessons Learned D5
+
+The augmentation experiment demonstrated that an improvement in
+individual classes does not necessarily produce an improvement in
+overall accuracy.
+
+The experiment also reinforced the importance of using a controlled
+comparison. The augmented model was restored to the same preserved
+baseline state before training, while the validation and test datasets
+remained unchanged.
+
+The results should therefore be interpreted specifically for the
+augmentation configuration tested rather than as a general conclusion
+that data augmentation always improves CNN performance.
+
+### Day 5 Status
+
+CNN evaluation and basic improvement experiment completed.
+
+The baseline and augmented models were compared using the same
+experimental starting point and unchanged validation/test data.
+
+Overall accuracy did not improve with the selected augmentation
+configuration, but substantial class-level improvements were observed
+for digits 8 and 9.
+
+----------------------------------------------------------------------------------------------

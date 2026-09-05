@@ -702,3 +702,52 @@ not represent autonomous-driving performance.
 Day 4 complete.
 
 Next: Day 5.
+
+### Day 5 — CNN Evaluation and Improvements
+
+Status: Complete
+
+Implemented and studied:
+
+- Classification error analysis on the MNIST test set
+- Incorrect prediction inspection
+- Confusion matrix analysis
+- Per-class test accuracy
+- Extended baseline CNN training
+- Training and validation learning curves
+- Basic data augmentation
+- Controlled comparison of augmented and non-augmented training
+- Class-level performance comparison
+
+Implementation:
+
+`deep_learning/cnn_from_scratch/02_image_classification.ipynb`
+
+Results:
+
+- Extended baseline test accuracy: 98.58%
+- Augmented model test accuracy: 98.44%
+- Overall difference: -0.14 percentage points
+
+Key observation:
+
+The selected augmentation configuration did not improve overall
+test accuracy. However, substantial class-level improvements were
+observed for previously difficult classes, particularly digit 8
+(+5.85 percentage points) and digit 9 (+5.75 percentage points).
+Some other classes showed a decrease in accuracy.
+
+Current learning result:
+
+The effect of data augmentation was evaluated experimentally rather
+than assumed. The results showed that augmentation can change
+class-level robustness without necessarily improving overall test
+accuracy. The experiment also reinforced the importance of controlled
+model comparison using the same starting state and unchanged
+validation and test datasets.
+
+### Current Stage D5
+
+Day 5 complete.
+
+Next: Day 6.
