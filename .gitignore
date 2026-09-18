@@ -6,3 +6,7 @@ requirements-full.txt
 datasets/MNIST/
 LEARNING_LOG.md
 PROJECT_CONTEXT.md
+# ROS 2 workspace build artifacts
+ros2/workspace/build/
+ros2/workspace/install/
+ros2/workspace/log/
