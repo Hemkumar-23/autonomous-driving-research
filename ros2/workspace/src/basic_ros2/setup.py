@@ -27,6 +27,8 @@ setup(
         'console_scripts': [
             'publisher = basic_ros2.publisher_node:main',
             'subscriber = basic_ros2.subscriber_node:main',
+            'vehicle_publisher = basic_ros2.vehicle_publisher_node:main',
+            'vehicle_subscriber = basic_ros2.vehicle_subscriber_node:main',
         ],
     },
 )
