@@ -17,4 +17,6 @@ Consequently, Git commit dates represent repository organization and
 version-control activity and should not be interpreted as the
 original dates of individual project activities.
 
-Development and simulation of a modular autonomous-driving system covering perception, tracking, localization, planning, control, ROS 2, and MATLAB/Simulink validation.
+Development and simulation of a modular autonomous-driving system
+covering perception, tracking, localization, planning, control,
+ROS 2, and MATLAB/Simulink validation.
